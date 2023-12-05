@@ -22,19 +22,24 @@ int partition(int list[], int left, int right, int print) {
     high = right + 1;
     pivot = list[left];
     do {
+        
         do {
             low++;
             compare++;
         } while (list[low] < pivot);
+
         do {
             high--;
             compare++;
         } while (list[high] > pivot);
+
         if (low < high) {
             SWAP(list[low], list[high], temp);
             move++;
         }
+        
     } while (low < high);
+    compare -= 2;
     move++;
     SWAP(list[left], list[high], temp);
     if (print == 0) {
@@ -95,8 +100,8 @@ int main(void) {
 
     printf("\nQuick Sort iter\n");
     quick_sort_iter(list, 0, n - 1, 0);
-    //printf("\nQuick Sort\n");
-    //quick_sort(list, 0, n - 1, 0);
+    /*printf("\nQuick Sort\n");
+    quick_sort(list, 0, n - 1, 0);*/
 
     move_count += move;
     compare_count += compare;
@@ -107,7 +112,8 @@ int main(void) {
         for (i = 0; i < n; i++)
             list[i] = rand() % 100;
 
-        quick_sort(list, 0, n - 1, 1);
+        //quick_sort(list, 0, n - 1, 1);
+        quick_sort_iter(list, 0, n - 1, 1); //반복적 구현
 
         move_count += move;
         compare_count += compare;
